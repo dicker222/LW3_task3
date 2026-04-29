@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Інтерпретатор виразів</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Syne:wght@400;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="bg-grid"></div>
+
+<main class="app">
+
+    <header class="header">
+        <div class="header-badge">Лабораторна №3</div>
+        <h1 class="header-title">Інтерпретатор<br><span>математичних виразів</span></h1>
+        <p class="header-sub">Shunting Yard · RPN · Стек · Черга</p>
+    </header>
+
+    <section class="card calculator">
+        <div class="card-label">// введи вираз</div>
+
+        <div class="input-row">
+            <input
+                type="text"
+                id="exprInput"
+                class="expr-input"
+                placeholder="наприклад: (3 + 4) * 2"
+                autocomplete="off"
+                spellcheck="false"
+            />
+            <button class="btn-calc" id="calcBtn" onclick="handleCalculate()">
+                <span>=</span>
+            </button>
+        </div>
+
+        <div class="quick-examples">
+            <span class="q-label">Приклади:</span>
+            <button class="q-btn" onclick="setExample('3 + 4 * 2')">3 + 4 * 2</button>
+            <button class="q-btn" onclick="setExample('(3 + 4) * 2')">(3 + 4) * 2</button>
+            <button class="q-btn" onclick="setExample('10 / 2 - 3')">10 / 2 - 3</button>
+            <button class="q-btn" onclick="setExample('2 * (3 + 4) - 1')">2*(3+4)-1</button>
+            <button class="q-btn" onclick="setExample('10 / 0')">10 / 0</button>
+        </div>
+
+        <div class="result-area" id="resultArea" style="display:none">
+            <div class="result-steps">
+                <div class="step">
+                    <div class="step-label">Токени</div>
+                    <div class="step-value mono" id="stepTokens"></div>
+                </div>
+                <div class="step-arrow">→</div>
+                <div class="step">
+                    <div class="step-label">RPN (Shunting Yard)</div>
+                    <div class="step-value mono" id="stepRPN"></div>
+                </div>
+                <div class="step-arrow">→</div>
+                <div class="step">
+                    <div class="step-label">Результат</div>
+                    <div class="step-value result-num" id="stepResult"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="error-area" id="errorArea" style="display:none">
+            <span class="error-icon">⚠</span>
+            <span id="errorMsg"></span>
+        </div>
+    </section>
+</main>
+
+<script src="main3.js"></script>
+</body>
+</html>
